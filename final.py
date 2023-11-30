@@ -61,6 +61,7 @@ you_win_header = PhotoImage(file=f"{os.getcwd()}/Images/You_Won.png")
 you_lost_header = PhotoImage(file=f"{os.getcwd()}/Images/You_Lost.png")
 you_lost_img = PhotoImage(file=f"{os.getcwd()}/Images/you_lose.png")
 you_win_img = PhotoImage(file=f"{os.getcwd()}/Images/you_win.png")
+play_again_img = PhotoImage(file=f"{os.getcwd()}/Images/Play_Again.png")
 
 #Extra
 close_img = PhotoImage(file=f"{os.getcwd()}/Images/Close.png")
@@ -142,8 +143,7 @@ nostalgia_list = ["CENGAGE",
                   "JEENEETARDS", 
                   "MESOMERIC EFFECT", 
                   "SEMICONDUCTORS", 
-                  "ROTATIONAL MOTION", 
-                  "3 IDIOTS", 
+                  "ROTATIONAL MOTION",  
                   "INTEGRATION", 
                   "NATIONAL TESTING AGENCY", 
                   "ONLINE CLASS", 
@@ -162,8 +162,7 @@ nostalgia_list = ["CENGAGE",
                   "TIME MANAGEMENT", 
                   "SYLLABUS"]
 
-movies_list = ["3 IDIOTS", 
-               "JAB WE MET",
+movies_list = ["JAB WE MET",
                "OM SHANTI OM", 
                "CHHICHHORE", 
                "KUCH KUCH HOTA HAI", 
@@ -266,7 +265,7 @@ def home_screen():
     def back_btn():
         destruction()
         start_screen()
-    back_button = Button(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0)
+    back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
     #close()
     
@@ -316,14 +315,13 @@ def categories_screen():
     def back_btn():
         destruction()
         home_screen()
-    back_button = Button(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
+    back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
     #close()
     
 #__________________________MULTIPLAYER SCREEN__________________________
 def multiplayer_screen():
-    global chosen_word, chosen_category
-    chosen_category = []
+    #chosen_category = []
     def destruction():
         multiplayer_txt.destroy()
         input_box.destroy()
@@ -331,7 +329,7 @@ def multiplayer_screen():
         back_button.destroy()
         
     def submit_txt():
-
+        global chosen_word
         def click(event):
             input_box.delete("1.0", END)
             input_box.insert("1.0", " ")
@@ -374,7 +372,7 @@ def multiplayer_screen():
     def back_btn():
         destruction()
         home_screen()
-    back_button = Button(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0)
+    back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
     
 #__________________________INSTRUCTIONS SCREEN__________________________
@@ -407,7 +405,8 @@ def instructions_screen():
     def back_btn():
         destruction()
         home_screen()
-    back_button = Button(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0)
+    
+    back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
     
     
@@ -425,10 +424,12 @@ def game_screen(chosen_word):
         lives_img.destroy()
         back_button.destroy()
         
+    def disable():
+        for key in keyboard_list:
+            key.config(state=DISABLED, bg=GREEN)
     
     def back_btn():
         destruction()
-        
         if chosen_word in chosen_category:
             categories_screen()
         else:
@@ -437,6 +438,7 @@ def game_screen(chosen_word):
     #Lists for future refrence  
     keyboard_list = []     
     chosen_letter_list = []
+    right_chosen_letters = []
     wrong_chosen_letters = []
     chosen_word_letters = []
     chosen_word_letters_backup = []
@@ -449,7 +451,9 @@ def game_screen(chosen_word):
     #Used in future
     for i in chosen_word:
         chosen_word_letters.append(i)
-        chosen_word_letters_backup.append(i)
+        if i != " ":
+            if i not in chosen_word_letters_backup:
+                chosen_word_letters_backup.append(i)
     print(chosen_word_letters)
     
     #Creating Dashes for the game  
@@ -514,12 +518,26 @@ def game_screen(chosen_word):
             
         #Going to the next screen
         if wrong == 5:
-            hangman.after(2000, go_to_lose_screen)
-    
+            go_to_lose_screen()
+        
+        suar = 0
+        for i in chosen_word_letters_backup:
+            if i in chosen_letter_list:
+                suar+=1
+        if suar == len(chosen_word_letters_backup):
+            go_to_win_screen()
+
+                
+    print(chosen_word_letters_backup)
     def go_to_lose_screen():
-        destruction()
-        loser_screen()
+        disable()
+        hangman.after(1000, destruction)
+        hangman.after(1000, loser_screen)
     
+    def go_to_win_screen():
+        disable()
+        hangman.after(1000, destruction)
+        hangman.after(1000, winner_screen)
        
     lives_img = Label(hangman, image=zero_img, borderwidth=0, highlightthickness=0, background=BLACK)
     lives_img.place(x=600, y=50)
@@ -527,18 +545,65 @@ def game_screen(chosen_word):
     #Setting up images for wrong thingy
     lives = [zero_img, one_img, two_img, three_img, four_img, five_img]
     
-    back_button = Button(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0)
+    back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
 
-def loser_screen():
-    you_lost_title = Label(hangman, image=you_lost_header, borderwidth=0, highlightthickness=0)
-    you_lost_title.place(x=255, y=40)
-
+#______________________________WIN SCREEN_______________________________________
 def winner_screen():
-    you_win_title = Label(hangman, image=you_win_header, borderwidth=0, highlightthickness=0)
-    you_win_title.place(x=255, y=40)
+    def destruction():
+        you_win_label.destroy()
+        word_answer.destroy()
+        answer.destroy()
+        playagain.destroy()
+
+    def play_again():
+        destruction()
+        home_screen()
+
+    def close():
+        hangman.destroy()
     
-     
+    you_win_label=Label(hangman,image=you_win_header, highlightthickness=0, borderwidth=0)
+    you_win_label.place(x=255,y=40)
+    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
+    word_answer.place(x=50,y=320)
+    answer=Label(hangman,text=chosen_word,bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
+    answer.place(x=50,y=475)
+    playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again)  #add command=play_again
+    playagain.place(x=50,y=525)
+
+    
+    close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
+    close_button.place(x=25, y=25)
+
+#______________________________LOSE SCREEN_______________________________________
+def loser_screen():
+
+    def destruction():
+        you_lose_label.destroy()
+        word_answer.destroy()
+        answer.destroy()
+        playagain.destroy()
+        
+    def close():
+        hangman.destroy()
+
+    def play_again():
+        destruction()
+        home_screen()
+    you_lose_label=Label(hangman,image=you_lost_header, highlightthickness=0, borderwidth=0)
+    you_lose_label.place(x=255,y=40)
+    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
+    word_answer.place(x=50,y=320)
+    playagain=Button(hangman, image=play_again_img, highlightthickness=0, borderwidth=0, command=play_again)  #add command=play_again
+    playagain.place(x=50,y=525)
+    answer=Label(hangman,text=chosen_word,bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
+    answer.place(x=50,y=475)
+    
+    
+    close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
+    close_button.place(x=25, y=25)
+
 start_screen()
 
 hangman.mainloop()
