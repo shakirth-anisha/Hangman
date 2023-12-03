@@ -1,8 +1,10 @@
 import tkinter as tk
+import pygame
 import ttwidgets
 from tkinter import Tk, END, CENTER, Text, PhotoImage, Label, Button, messagebox, DISABLED
 import os
 import random
+from tkvideo import *
 
 #__________________________CONSTANTS__________________________
 BLACK = "#1C1C1E"
@@ -67,153 +69,320 @@ play_again_img = PhotoImage(file=f"{os.getcwd()}/Images/Play_Again.png")
 close_img = PhotoImage(file=f"{os.getcwd()}/Images/Close.png")
 back_img = PhotoImage(file=f"{os.getcwd()}/Images/Back.png")
 
+#__________________________SOUNDS__________________________
+pygame.mixer.init()
+win_soundtrack=f"{os.getcwd()}/Sound/golf_clap.wav"
+lose_sountrack=f"{os.getcwd()}/Sound/sad_horn.wav"
+rickroll_soundtrack=f"{os.getcwd()}/Sound/rick_roll.wav"
+
+#__________________________VIDEOS__________________________
+win_video=f"{os.getcwd()}/Videos/you_win_animation.mp4"
+lose_video=f"{os.getcwd()}/Videos/you_lose_animation.mp4"
+rickroll_video=f"{os.getcwd()}/Videos/rick_roll.mp4"
+
+def play_win():
+    pygame.mixer.music.load(win_soundtrack)
+    pygame.mixer.music.play(loops=0)
+
+def play_lose():
+    pygame.mixer.music.load(lose_sountrack)
+    pygame.mixer.music.play(loops=0)
+
+def winning_video():
+    winner_video_lbl=Label(hangman, background=BLACK)
+    winner_video_lbl.place(x=450, y=240, width=500, height=500)
+    winner_video=tkvideo(win_video, winner_video_lbl, loop=0, size=(500,500))
+    winner_video.play()
+
+def losing_video():
+    loser_video_lbl=Label(hangman, background=BLACK)
+    loser_video_lbl.place(x=450, y=240, width=500, height=500)
+    loser_video=tkvideo(lose_video, loser_video_lbl, loop=0, size=(500,500))
+    loser_video.play()
+
 #__________________________WORD LISTS__________________________
-ice_cream_list = ["CHOCOLATE FUDGE" , 
-                  "CHOCOLATE MARSHMALLOW", 
-                  "DEATH BY CHOCOLATE",
-                  "CHOCO BROWNIE",
-                  "SUNDAE",
-                  "TIRAMISU",
-                  "CASSATA", 
-                  "TENDER COCONUT",
-                  "GELATO", 
-                  "CORNER HOUSE",
-                  "BASKIN ROBBINS", 
-                  "NATURALS", 
-                  "CORNETTO",
-                  "SORBET",
-                  "VANILLA",
-                  "WAFFLE", 
-                  "CARAMEL",
-                  "BLACK CURRANT",
-                  "CHOCOBAR",
-                  "ICE CREAM SANDWICH", 
-                  "BUTTERSCOTCH", 
-                  "CUSTARD",
-                  "BLACK FOREST"]
+ice_cream_list = [
+    "Vanilla",
+    "Chocolate",
+    "Strawberry",
+    "Mint Chocolate Chip",
+    "Cookies and Cream",
+    "Rocky Road",
+    "Butter Pecan",
+    "Cookie Dough",
+    "Pistachio",
+    "Neapolitan",
+    "Coffee",
+    "Mango",
+    "Black Cherry",
+    "Caramel Swirl",
+    "Peanut Butter Cup",
+    "Toffee Crunch",
+    "Double Chocolate Fudge",
+    "Maple Walnut",
+    "Rum Raisin",
+    "Coconut",
+    "Hazelnut",
+    "Cherry Garcia",
+    "Pralines and Cream",
+    "Banana Split",
+    "Lemon Sorbet",
+    "Blueberry Cheesecake",
+    "Key Lime Pie",
+    "Red Velvet",
+    "Salted Caramel",
+    "White Chocolate Raspberry",
+    "Pumpkin Spice",
+    "Peppermint Stick",
+    "S mores",
+    "Irish Cream",
+    "Almond Joy",
+    "Bubblegum",
+    "Ginger",
+    "Green Tea",
+    "Honey Lavender",
+    "Lavender Blueberry",
+    "Chai Tea",
+    "Eggnog",
+    "Pomegranate",
+    "Tiramisu",
+    "Cinnamon Roll",
+    "Brownie Batter",
+    "Cotton Candy"]
 
-novels_list = ["HARRY POTTER", 
-               "PERCY JACKSON", 
-               "ALL THE BRIGHT PLACES", 
-               "SHATTER ME", 
-               "SHERLOCK HOLMES", 
-               "A COURT OF THORNS AND ROSES", 
-               "THE SILENT PATIENT", 
-               "TUESDAYS WITH MORRIE", 
-               "FIVE FEET APART", 
-               "WILL NEWMAN", 
-               "THE DIARY OF A WIMPY KID", 
-               "HERCULE POIROT", 
-               "MURDER ON THE ORIENT EXPRESS", 
-               "SHADOW AND BONE", 
-               "SIX OF CROWS", 
-               "THE CRUEL PRINCE", 
-               "THE GREAT GATSBY", 
-               "LOOKING FOR ALASKA", 
-               "TWISTED LOVE", 
-               "THE ALCHEMIST", 
-               "THE FAULT IN OUR STARS"]
+novels_list = [
+    "HOUSE OF EARTH AND BLOOD",
+    "VERITY",
+    "BEFORE I FALL",
+    "LOOKING FOR ALASKA",
+    "RED QUEEN",
+    "THE LOVE HYPOTHESIS",
+    "TWISTED LOVE",
+    "THE SANATORIUM",
+    "PERCY JACKSON",
+    "HARRY POTTER",
+    "THE BROMANCE BOOK CLUB",
+    "RED, WHITE & ROYAL BLUE",
+    "A COURT OF THORNS AND ROSES",
+    "THE PUSH",
+    "ALL THE BRIGHT PLACES",
+    "THE FLATSHARE",
+    "SHADOW AND BONE",
+    "TUESDAYS WITH MORRIE",
+    "THE CRUEL PRINCE",
+    "THE GUEST LIST",
+    "LEGENDBORN",
+    "THE GILDED WOLVES",
+    "THE DATING PLAYBOOK",
+    "THE POPPY WAR",
+    "BLACK SUN",
+    "THEY BOTH DIE AT THE END",
+    "PEOPLE WE MEET ON VACATION",
+    "BEACH READ",
+    "THE DIARY OF A WIMPY KID",
+    "THRONE OF GLASS",
+    "SHERLOCK HOLMES",
+    "THE SILENT PATIENT",
+    "THE BONE SEASON",
+    "THE INHERITANCE GAMES",
+    "CARAVAL",
+    "THE HATE U GIVE",
+    "GONE GIRL",
+    "HERCULE POIROT",
+    "MURDER ON THE ORIENT EXPRESS",
+    "MALICE",
+    "THE NIGHT SWIM",
+    "SHATTER ME",
+    "THE SEARCHER",
+    "AURORA RISING",
+    "IT HAPPENED ONE SUMMER",
+    "THE MASK FALLING",
+    "THE REVERSAL",
+    "THE ALCHEMIST",
+    "ONE OF US IS LYING",
+    "CEMETERY BOYS",
+    "FIVE FEET APART",
+    "WILL NEWMAN",
+    "THE FAULT IN OUR STARS",
+    "THE SPANISH LOVE DECEPTION",
+    "THE HATING GAME",
+    "THE GREAT GATSBY",
+    "SIX OF CROWS"]
 
-music_list = ["SENORITA",
-              "TEETH",
-              "ALL LOVE MINE ALL MINE",
-              "THEHER JA",
-              "COLOR GREEN",
-              "MAYBE MY SOULMATE DIED",
-              "DANCING WITH YOUR GHOST",
-              "NUMB",
-              "MASTER OF PUPPETS",
-              "GIVE ME SOME SUNSHINE",
-              "SHAPE OF YOU",
-              "SUNFLOWER",
-              "TALKING TO THE MOON",
-              "NAATU NAATU",
-              "YOUNGBLOOD",
-              "NEVER GONNA GIVE YOU UP"]
+music_list = [
+    "SHAPE OF YOU",
+    "DESPACITO",
+    "TUM HI HO",
+    "SENORITA",
+    "LEAN ON",
+    "MALHARI",
+    "HAVANA",
+    "WAKA WAKA",
+    "JEENE LAGA HOON",
+    "BELIEVER",
+    "TERA BAN JAUNGA",
+    "PERFECT",
+    "INKEM INKEM INKEM KAAVALE",
+    "CHEAP THRILLS",
+    "BEKHAYALI",
+    "MY HEART WILL GO ON",
+    "FADED",
+    "COUNTING STARS",
+    "DANCE MONKEY",
+    "SAY YOU WON'T LET GO",
+    "KAUN TUJHE",
+    "UPTOWN FUNK",
+    "BUTTERFLY",
+    "ATTENTION",
+    "SAY SOMETHING",
+    "CAN'T STOP THE FEELING!",
+    "SHAPE OF YOU",
+    "SORRY",
+    "ROAR",
+    "COUNTING STARS",
+    "HAPPIER",
+    "BLINDING LIGHTS",
+    "WATERMELON SUGAR",
+    "DYNAMITE",
+    "SAVAGE LOVE",
+    "GOOD FOR U",
+    "LEAVE THE DOOR OPEN",
+    "KISS ME MORE",
+    "SAVE YOUR TEARS",
+    "MONTERO",
+    "PEACHES",
+    "LEVITATING",
+    "DEJA VU",
+    "UP",
+    "MOOD",
+    "POKER FACE",
+    "SHUT UP AND DANCE",
+    "CAN'T FEEL MY FACE",
+    "BAD ROMANCE"
+    "NEVER GONNA GIVE YOU UP"]
 
-nostalgia_list = ["CENGAGE", 
-                  "HC VERMA", 
-                  "JEE ADVANCED", 
-                  "KOTA FACTORY", 
-                  "SRI CHAITANYA", 
-                  "NARAYANA", 
-                  "AAKASH", 
-                  "ALLEN", 
-                  "JEE MAINS", 
-                  "JEENEETARDS", 
-                  "MESOMERIC EFFECT", 
-                  "SEMICONDUCTORS", 
-                  "ROTATIONAL MOTION",  
-                  "INTEGRATION", 
-                  "NATIONAL TESTING AGENCY", 
-                  "ONLINE CLASS", 
-                  "PHYSICS WALLAH", 
-                  "UNACADEMY", 
-                  "ZOOM", 
-                  "DEPRESSION", 
-                  "HOPELESS", 
-                  "FAILURE", 
-                  "EXPERIMENTAL BATCH", 
-                  "MS CHOUHAN", 
-                  "INORGANIC CHEMISTRY", 
-                  "ORGANIC CHEMISTRY",
-                  "TRAUMA", 
-                  "REVISION", 
-                  "TIME MANAGEMENT", 
-                  "SYLLABUS"]
+nostalgia_list =[
+    "LOCKDOWN",
+    "NATIONAL TESTING AGENCY",
+    "REVISION",
+    "MACERENA",
+    "MASK",
+    "FAILURE",
+    "SOCIAL DISTANCING",
+    "PHYSICS WALLAH",
+    "INTEGRATION",
+    "SRI CHAITANYA",
+    "PTM",
+    "CENGAGE",
+    "JEE ADVANCED",
+    "TRAUMA",
+    "HC VERMA",
+    "ONLINE CLASS",
+    "COVID",
+    "ZOOM",
+    "MS CHOUHAN",
+    "IIT JEE",
+    "INORGANIC CHEMISTRY",
+    "ORGANIC CHEMISTRY",
+    "QUARTINE",
+    "JEENEETARDS",
+    "ROTATIONAL MOTION",
+    "SPORTS DAY",
+    "UNACADEMY",
+    "TIME MANAGEMENT",
+    "EXPERIMENTAL BATCH",
+    "SYLLABUS",
+    "PEN FIGHT",
+    "SEMICONDUCTORS",
+    "JEE MAINS",
+    "ALLEN",
+    "NARAYANA",
+    "HOPELESS",
+    "AAKASH",
+    "BOOK FAIR",
+    "MESOMERIC EFFECT",
+    "DEPRESSION",
+    "KOTA FACTORY",
+    ]
 
-movies_list = ["JAB WE MET",
-               "OM SHANTI OM", 
-               "CHHICHHORE", 
-               "KUCH KUCH HOTA HAI", 
-               "MY NAME IS KHAN",
-               "TITANIC", 
-               "FORREST GUMP",
-               "DESPICABLE ME",
-               "PIKU",
-               "BARFI",
-               "ZINDAGI NA MILEGI DOBARA", 
-               "DANGAL", 
-               "PINK", 
-               "TAARE ZAMEEN PAR",
-               "JOKER",
-               "AVATAR", 
-               "MADAGASCAR", 
-               "PADMAAVAT",
-               "LA LA LAND", 
-               "FAST AND FURIOUS",
-               "ROCKSTAR",
-               "BARBIE",
-               "OPPENHEIMER",
-               "INTERSTELLAR",
-               "LIGHTS OUT",
-               "TRAIN TO BUSAN"]
+movies_list = [
+    "SHERSHAAH",
+    "RAIDERS OF THE LOST ARK",
+    "ROCKSTAR",
+    "STAR WARS",
+    "QUEEN",
+    "CITY LIGHTS",
+    "THE SHAPE OF WATER",
+    "KUCH KUCH HOTA HAI",
+    "JOKER",
+    "FAST AND FURIOUS",
+    "THE SOUND OF MUSIC",
+    "PINK",
+    "DILWALE DULHANIA LE JAYENGE",
+    "PADMAAVAT",
+    "DESPICABLE ME",
+    "BARBIE",
+    "KABHI KHUSHI KABHIE GHAM",
+    "MADAGASCAR",
+    "THE GODFATHER",
+    "SHOLAY",
+    "INCEPTION",
+    "DEVDAS",
+    "THE DARK KNIGHT",
+    "OPPENHEIMER",
+    "TITANIC",
+    "FORREST GUMP",
+    "CHHICHHORE",
+    "TAARE ZAMEEN PAR",
+    "PK",
+    "THE LION KING",
+    "ZINDAGI NA MILEGI DOBARA",
+    "LAGAAN",
+    "LA LA LAND",
+    "CASABLANCA",
+    "THE SILENCE OF THE LAMBS",
+    "JAB WE MET",
+    "SLUMDOG MILLIONAIRE",
+    "FIGHT CLUB",
+    "BHAAG MILKHA BHAAG",
+    "THE LORD OF THE RINGS",
+    "OM SHANTI OM",
+    "DANGAL",
+    "MOTHER INDIA",
+    "JURASSIC PARK",
+    "AVATAR",
+    "DIL CHAHTA HAI",
+    "GONE WITH THE WIND",
+    "PULP FICTION",
+    "THE AVENGERS",
+    "THE MATRIX",
+    "LIGHTS OUT",
+    "TRAIN TO BUSAN",
+    "BARFI",
+    "JAWS",
+    "GLADIATOR",
+    "INTERSTELLAR",
+    "CITIZEN KANE"]
 
-pes_list = ["BUN SAMOSA",
-            "SHAWARMA",
-            "QUADRANGLE",
-            "MRD AUDITORIUM",
-            "COW", 
-            "HOSPITAL",
-            "SKILL ISSUE",
-            "JAGS",
-            "MAAYA",
-            "RIYAL",
-            "NAATU NAATU",
-            "RETRO DAY",
-            "RICK ROLL",
-            "FAILURE",
-            "EMOTIONAL DAMAGE",
-            "PESSIMISTIC",
-            "HOPES CRUSHED", 
-            "SUPREMEC"]
-
-# #__________________________CLOSE BUTTON__________________________
-# def close():
-#     def close_game():
-#         hangman.destroy()
-#     close_button = Button(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close_game)
-#     close_button.place(x=25, y=25)
+pes_list = [
+    "BUN SAMOSA",
+    "SHAWARMA",
+    "QUADRANGLE",
+    "MRD AUDITORIUM",
+    "COW", 
+    "HOSPITAL",
+    "SKILL ISSUE",
+    "JAGS",
+    "MAAYA",
+    "RIYAL",
+    "NAATU NAATU",
+    "RETRO DAY",
+    "RICK ROLL",
+    "FAILURE",
+    "EMOTIONAL DAMAGE",
+    "PESSIMISTIC",
+    "HOPES CRUSHED", 
+    "SUPREMACY"]
 
 #__________________________START SCREEN__________________________
 def start_screen():  
@@ -412,7 +581,6 @@ def instructions_screen():
     
 #__________________________GAME SCREEN__________________________
 def game_screen(chosen_word):
-    
     #Destroying all buttons for back
     def destruction():
         for dash in dashes:
@@ -518,14 +686,20 @@ def game_screen(chosen_word):
             
         #Going to the next screen
         if wrong == 5:
-            go_to_lose_screen()
+            if chosen_word=="RICK ROLL" or chosen_word == "NEVER GONNA GIVE YOU UP":
+                go_to_rickroll_screen()
+            else:
+                go_to_lose_screen()
         
         suar = 0
         for i in chosen_word_letters_backup:
             if i in chosen_letter_list:
                 suar+=1
         if suar == len(chosen_word_letters_backup):
-            go_to_win_screen()
+            if chosen_word=="RICK ROLL" or chosen_word == "NEVER GONNA GIVE YOU UP":
+                go_to_rickroll_screen()
+            else:
+                go_to_win_screen()
 
                 
     print(chosen_word_letters_backup)
@@ -538,6 +712,12 @@ def game_screen(chosen_word):
         disable()
         hangman.after(1000, destruction)
         hangman.after(1000, winner_screen)
+
+    def go_to_rickroll_screen():
+        disable()
+        hangman.after(1000, destruction)
+        hangman.after(1000, rickroll_screen)
+
        
     lives_img = Label(hangman, image=zero_img, borderwidth=0, highlightthickness=0, background=BLACK)
     lives_img.place(x=600, y=50)
@@ -548,29 +728,65 @@ def game_screen(chosen_word):
     back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
 
+#__________________________EASTER EGG__________________________
+def rickroll_screen():
+    def play_rick_roll():
+        pygame.mixer.music.load(rickroll_soundtrack)
+        pygame.mixer.music.play(loops=0)
+        player = tkvideo(rickroll_video, rickroll_label,loop=0, size =(1000,563))
+        player.play()
+
+    def destruction():
+        rickroll_label.destroy()
+    
+    
+    hangman.after(1000, play_rick_roll)
+    hangman.after(13500,destruction)
+    hangman.after(13500, home_screen)
+
+    rickroll_label=Label(hangman, background=BLACK)
+    rickroll_label.place(width=1000, height=800)
+    play_rick_roll()
+
+
 #______________________________WIN SCREEN_______________________________________
 def winner_screen():
+    
+    play_win()
+
     def destruction():
         you_win_label.destroy()
         word_answer.destroy()
         answer.destroy()
+        close_button.destroy()
         playagain.destroy()
+        winner_video_lbl.destroy()
 
     def play_again():
         destruction()
         home_screen()
+        pygame.mixer.music.stop()
 
     def close():
+        pygame.mixer.music.stop()
         hangman.destroy()
+    
+    chosen_word_2 = chosen_word
+    index_of_space = chosen_word.find(" ", 10)
+    chosen_word_edit = chosen_word_2[:index_of_space + 1] + "\n" + chosen_word_2[index_of_space + 1:]
     
     you_win_label=Label(hangman,image=you_win_header, highlightthickness=0, borderwidth=0)
     you_win_label.place(x=255,y=40)
-    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
-    word_answer.place(x=50,y=320)
-    answer=Label(hangman,text=chosen_word,bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
-    answer.place(x=50,y=475)
-    playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again)  #add command=play_again
-    playagain.place(x=50,y=525)
+    winner_video_lbl=Label(hangman, background=BLACK)
+    winner_video_lbl.place(x=450, y=240, width=500, height=500)
+    winner_video=tkvideo(win_video, winner_video_lbl, loop=0, size=(500,500))
+    winner_video.play()
+    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    word_answer.place(x=50,y=320, width=350, height=100)
+    answer=Label(hangman,text=chosen_word_edit,bg=BLACK,fg=GREEN,font=("Helvetica 35 underline"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    answer.place(x=50,y=400, width=350, height=150)
+    playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again)
+    playagain.place(x=50,y=575)
 
     
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
@@ -579,31 +795,49 @@ def winner_screen():
 #______________________________LOSE SCREEN_______________________________________
 def loser_screen():
 
+    play_lose()
+
+
     def destruction():
         you_lose_label.destroy()
         word_answer.destroy()
         answer.destroy()
+        close_button.destroy()
         playagain.destroy()
+        loser_video_lbl.destroy()
         
-    def close():
-        hangman.destroy()
-
+    
     def play_again():
         destruction()
         home_screen()
+        pygame.mixer.music.stop()
+        
+        
+    def close():
+        pygame.mixer.music.stop()
+        hangman.destroy()
+
+    chosen_word_2 = chosen_word
+    index_of_space = chosen_word.find(" ", 10)
+    chosen_word_edit = chosen_word_2[:index_of_space + 1] + "\n" + chosen_word_2[index_of_space + 1:]
+        
     you_lose_label=Label(hangman,image=you_lost_header, highlightthickness=0, borderwidth=0)
     you_lose_label.place(x=255,y=40)
-    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
-    word_answer.place(x=50,y=320)
-    playagain=Button(hangman, image=play_again_img, highlightthickness=0, borderwidth=0, command=play_again)  #add command=play_again
-    playagain.place(x=50,y=525)
-    answer=Label(hangman,text=chosen_word,bg=BLACK,fg=PLATINUM,font=("Helvetica",35),highlightthickness=0,borderwidth=0)
-    answer.place(x=50,y=475)
+    loser_video_lbl=Label(hangman, background=BLACK)
+    loser_video_lbl.place(x=450, y=240, width=500, height=500)
+    loser_video=tkvideo(lose_video, loser_video_lbl, loop=0, size=(500,500))
+    loser_video.play()
+    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    word_answer.place(x=50,y=320, width=350, height=100)
+    answer=Label(hangman,text=chosen_word_edit,bg=BLACK,fg=GREEN,font=("Helvetica 35 underline"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    answer.place(x=50,y=400, width=350, height=150)
+    playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again) 
+    playagain.place(x=50,y=575)
     
     
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
     close_button.place(x=25, y=25)
 
-start_screen()
+rickroll_screen()
 
 hangman.mainloop()
