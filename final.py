@@ -82,11 +82,11 @@ rickroll_video=f"{os.getcwd()}/Videos/rick_roll.mp4"
 
 def play_win():
     pygame.mixer.music.load(win_soundtrack)
-    pygame.mixer.music.play(loops=1)
+    pygame.mixer.music.play(loops=2)
 
 def play_lose():
     pygame.mixer.music.load(lose_sountrack)
-    pygame.mixer.music.play(loops=1)
+    pygame.mixer.music.play(loops=2)
 
 #__________________________WORD LISTS__________________________
 ice_cream_list =[
