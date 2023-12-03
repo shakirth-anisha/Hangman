@@ -82,11 +82,11 @@ rickroll_video=f"{os.getcwd()}/Videos/rick_roll.mp4"
 
 def play_win():
     pygame.mixer.music.load(win_soundtrack)
-    pygame.mixer.music.play(loops=69)
+    pygame.mixer.music.play(loops=1)
 
 def play_lose():
     pygame.mixer.music.load(lose_sountrack)
-    pygame.mixer.music.play(loops=69)
+    pygame.mixer.music.play(loops=1)
 
 #__________________________WORD LISTS__________________________
 ice_cream_list =[
@@ -200,13 +200,13 @@ music_list = [
     "FADED",
     "COUNTING STARS",
     "DANCE MONKEY",
-    "SAY YOU WON'T LET GO",
+    "SAY YOU WONT LET GO",
     "KAUN TUJHE",
     "UPTOWN FUNK",
     "BUTTERFLY",
     "ATTENTION",
     "SAY SOMETHING",
-    "CAN'T STOP THE FEELING!",
+    "CANT STOP THE FEELING",
     "SHAPE OF YOU",
     "SORRY",
     "ROAR",
@@ -228,7 +228,7 @@ music_list = [
     "MOOD",
     "POKER FACE",
     "SHUT UP AND DANCE",
-    "CAN'T FEEL MY FACE",
+    "CANT FEEL MY FACE",
     "BAD ROMANCE"
     "NEVER GONNA GIVE YOU UP"]
 
