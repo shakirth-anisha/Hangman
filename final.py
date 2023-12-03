@@ -26,7 +26,7 @@ start_img = PhotoImage(file=f"{os.getcwd()}/Images/Start.png")
 
 #Home Screen
 hangman_img = PhotoImage(file=f"{os.getcwd()}/Images/Hangman.png")
-home_img = PhotoImage(file=f"{os.getcwd()}/Images/Home_Screen.png")
+home_img = PhotoImage(file=f"{os.getcwd()}/Images/Hangman_Screen.png")
 single_player_img = PhotoImage(file=f"{os.getcwd()}/Images/Single_Player.png")
 multiplayer_img = PhotoImage(file=f"{os.getcwd()}/Images/Multiplayer.png")
 single_player_img = PhotoImage(file=f"{os.getcwd()}/Images/Single_Player.png")
@@ -82,73 +82,44 @@ rickroll_video=f"{os.getcwd()}/Videos/rick_roll.mp4"
 
 def play_win():
     pygame.mixer.music.load(win_soundtrack)
-    pygame.mixer.music.play(loops=0)
+    pygame.mixer.music.play(loops=69)
 
 def play_lose():
     pygame.mixer.music.load(lose_sountrack)
-    pygame.mixer.music.play(loops=0)
-
-def winning_video():
-    winner_video_lbl=Label(hangman, background=BLACK)
-    winner_video_lbl.place(x=450, y=240, width=500, height=500)
-    winner_video=tkvideo(win_video, winner_video_lbl, loop=0, size=(500,500))
-    winner_video.play()
-
-def losing_video():
-    loser_video_lbl=Label(hangman, background=BLACK)
-    loser_video_lbl.place(x=450, y=240, width=500, height=500)
-    loser_video=tkvideo(lose_video, loser_video_lbl, loop=0, size=(500,500))
-    loser_video.play()
+    pygame.mixer.music.play(loops=69)
 
 #__________________________WORD LISTS__________________________
-ice_cream_list = [
-    "Vanilla",
-    "Chocolate",
-    "Strawberry",
-    "Mint Chocolate Chip",
-    "Cookies and Cream",
-    "Rocky Road",
-    "Butter Pecan",
-    "Cookie Dough",
-    "Pistachio",
-    "Neapolitan",
-    "Coffee",
-    "Mango",
-    "Black Cherry",
-    "Caramel Swirl",
-    "Peanut Butter Cup",
-    "Toffee Crunch",
-    "Double Chocolate Fudge",
-    "Maple Walnut",
-    "Rum Raisin",
-    "Coconut",
-    "Hazelnut",
-    "Cherry Garcia",
-    "Pralines and Cream",
-    "Banana Split",
-    "Lemon Sorbet",
-    "Blueberry Cheesecake",
-    "Key Lime Pie",
-    "Red Velvet",
-    "Salted Caramel",
-    "White Chocolate Raspberry",
-    "Pumpkin Spice",
-    "Peppermint Stick",
-    "S mores",
-    "Irish Cream",
-    "Almond Joy",
-    "Bubblegum",
-    "Ginger",
-    "Green Tea",
-    "Honey Lavender",
-    "Lavender Blueberry",
-    "Chai Tea",
-    "Eggnog",
-    "Pomegranate",
-    "Tiramisu",
-    "Cinnamon Roll",
-    "Brownie Batter",
-    "Cotton Candy"]
+ice_cream_list =[
+    "VANILLA",
+    "CHOCOLATE",
+    "STRAWBERRY",
+    "MINT CHOCOLATE CHIP",
+    "COOKIES AND CREAM",
+    "ROCKY ROAD",
+    "BUTTER PECAN",
+    "COOKIE DOUGH",
+    "PISTACHIO",
+    "NEAPOLITAN",
+    "COFFEE",
+    "MANGO",
+    "BLACK CHERRY",
+    "CARAMEL SWIRL",
+    "PEANUT BUTTER CUP",
+    "TOFFEE CRUNCH",
+    "DOUBLE CHOCOLATE FUDGE",
+    "MAPLE WALNUT",
+    "RUM RAISIN",
+    "COCONUT",
+    "HAZELNUT",
+    "CHERRY GARCIA",
+    "PRALINES AND CREAM",
+    "BANANA SPLIT",
+    "LEMON SORBET",
+    "BLUEBERRY CHEESECAKE",
+    "KEY LIME PIE",
+    "RED VELVET",
+    "SALTED CARAMEL",
+    "WHITE CHOCOLATE"]
 
 novels_list = [
     "HOUSE OF EARTH AND BLOOD",
@@ -392,7 +363,7 @@ def start_screen():
         home_screen()
 
     #Buttons
-    start_button = Button(hangman, image=start_img, borderwidth=0, highlightthickness=0, command=on_button_click)
+    start_button = ttwidgets.TTButton(hangman, image=start_img, borderwidth=0, highlightthickness=0, command=on_button_click, bg=BLACK)
     start_button.place(x=300, y=325)
     #close()
 
@@ -424,11 +395,11 @@ def home_screen():
     hangman_txt.place(x=225, y=40)
     home_txt = Label(hangman, image=home_img, background=BLACK)
     home_txt.place(x=450, y=230)
-    single_player_button = Button(hangman, image=single_player_img, background=BLACK, command=single_player_mode)
+    single_player_button = ttwidgets.TTButton(hangman, image=single_player_img, background=BLACK, command=single_player_mode)
     single_player_button.place(x=50,y=230)
-    multiplayer_button = Button(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
+    multiplayer_button = ttwidgets.TTButton(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
     multiplayer_button.place(x=50, y=430)
-    instructions_button = Button(hangman, image=instructions_img, background=BLACK, command=instructions_mode)
+    instructions_button = ttwidgets.TTButton(hangman, image=instructions_img, background=BLACK, command=instructions_mode)
     instructions_button.place(x=50, y=630)
     
     def back_btn():
@@ -581,6 +552,7 @@ def instructions_screen():
     
 #__________________________GAME SCREEN__________________________
 def game_screen(chosen_word):
+    chosen_word = chosen_word.upper()
     #Destroying all buttons for back
     def destruction():
         for dash in dashes:
@@ -779,7 +751,7 @@ def winner_screen():
     you_win_label.place(x=255,y=40)
     winner_video_lbl=Label(hangman, background=BLACK)
     winner_video_lbl.place(x=450, y=240, width=500, height=500)
-    winner_video=tkvideo(win_video, winner_video_lbl, loop=0, size=(500,500))
+    winner_video=tkvideo(win_video, winner_video_lbl, loop=69, size=(500,500))
     winner_video.play()
     word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
     word_answer.place(x=50,y=320, width=350, height=100)
@@ -825,7 +797,7 @@ def loser_screen():
     you_lose_label.place(x=255,y=40)
     loser_video_lbl=Label(hangman, background=BLACK)
     loser_video_lbl.place(x=450, y=240, width=500, height=500)
-    loser_video=tkvideo(lose_video, loser_video_lbl, loop=0, size=(500,500))
+    loser_video=tkvideo(lose_video, loser_video_lbl, loop=69, size=(500,500))
     loser_video.play()
     word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
     word_answer.place(x=50,y=320, width=350, height=100)
@@ -838,6 +810,6 @@ def loser_screen():
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
     close_button.place(x=25, y=25)
 
-rickroll_screen()
+start_screen()
 
 hangman.mainloop()
