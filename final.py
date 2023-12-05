@@ -19,6 +19,7 @@ hangman = Tk()
 hangman.geometry("1000x800")
 hangman["background"]=BLACK
 hangman.title("Hangman")
+hangman.resizable(width=0, height=0)
 
 #__________________________IMAGES__________________________
 #Start Screen
@@ -86,7 +87,7 @@ def play_win():
 
 def play_lose():
     pygame.mixer.music.load(lose_sountrack)
-    pygame.mixer.music.play(loops=2)
+    pygame.mixer.music.play(loops=1)
 
 #__________________________WORD LISTS__________________________
 ice_cream_list =[
@@ -238,6 +239,7 @@ nostalgia_list =[
     "REVISION",
     "MACERENA",
     "MASK",
+    "CRUSH"
     "FAILURE",
     "SOCIAL DISTANCING",
     "PHYSICS WALLAH",
@@ -280,6 +282,7 @@ movies_list = [
     "SHERSHAAH",
     "RAIDERS OF THE LOST ARK",
     "ROCKSTAR",
+    "IT"
     "STAR WARS",
     "QUEEN",
     "CITY LIGHTS",
@@ -345,6 +348,11 @@ pes_list = [
     "SKILL ISSUE",
     "JAGS",
     "MAAYA",
+    "IN SEMESTER",
+    "END SEMESTER",
+    "SIXTY THREE ACRES",
+    "NO INTERNET",
+    "NO WIFI",
     "RIYAL",
     "NAATU NAATU",
     "RETRO DAY",
@@ -357,7 +365,6 @@ pes_list = [
 
 #__________________________START SCREEN__________________________
 def start_screen():  
-    global start_button    
     def on_button_click():
         start_button.destroy()
         home_screen()
@@ -365,7 +372,6 @@ def start_screen():
     #Buttons
     start_button = ttwidgets.TTButton(hangman, image=start_img, borderwidth=0, highlightthickness=0, command=on_button_click, bg=BLACK)
     start_button.place(x=300, y=325)
-    #close()
 
 #__________________________HOME SCREEN__________________________
 def home_screen():
@@ -373,7 +379,7 @@ def home_screen():
     def destruction():
         hangman_txt.destroy()
         single_player_button.destroy()
-        multiplayer_button.destroy()
+        multiplayer_home_button.destroy()
         instructions_button.destroy()
         home_txt.destroy()
         back_button.destroy()
@@ -397,20 +403,19 @@ def home_screen():
     home_txt.place(x=450, y=230)
     single_player_button = ttwidgets.TTButton(hangman, image=single_player_img, background=BLACK, command=single_player_mode)
     single_player_button.place(x=50,y=230)
-    multiplayer_button = ttwidgets.TTButton(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
-    multiplayer_button.place(x=50, y=430)
+    multiplayer_home_button = ttwidgets.TTButton(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
+    multiplayer_home_button.place(x=50, y=430)
     instructions_button = ttwidgets.TTButton(hangman, image=instructions_img, background=BLACK, command=instructions_mode)
     instructions_button.place(x=50, y=630)
     
     def back_btn():
         destruction()
         start_screen()
+        
     back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
-    #close()
     
 #__________________________CATEGORIES SCREEN__________________________
-
 def categories_screen():
     
     def destruction():
@@ -419,7 +424,6 @@ def categories_screen():
         for category_button in category_buttons:
             category_button.destroy()
     
-    global chosen_word
     def handle_button_click(category):
         global chosen_word, chosen_category
         chosen_category = category
@@ -549,7 +553,6 @@ def instructions_screen():
     back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
     
-    
 #__________________________GAME SCREEN__________________________
 def game_screen(chosen_word):
     chosen_word = chosen_word.upper()
@@ -564,21 +567,24 @@ def game_screen(chosen_word):
         lives_img.destroy()
         back_button.destroy()
         
+    def back_btn():
+        destruction()
+        #If try and except is not used, then the code throws a name error while blacking back button after using multiplayer screen
+        try:
+            if chosen_word in chosen_category:
+                categories_screen()
+            else:
+                multiplayer_screen()
+        except NameError:
+            multiplayer_screen()
+            
     def disable():
         for key in keyboard_list:
             key.config(state=DISABLED, bg=GREEN)
-    
-    def back_btn():
-        destruction()
-        if chosen_word in chosen_category:
-            categories_screen()
-        else:
-            multiplayer_screen()
      
     #Lists for future refrence  
     keyboard_list = []     
     chosen_letter_list = []
-    right_chosen_letters = []
     wrong_chosen_letters = []
     chosen_word_letters = []
     chosen_word_letters_backup = []
@@ -719,7 +725,6 @@ def rickroll_screen():
     rickroll_label=Label(hangman, background=BLACK)
     rickroll_label.place(width=1000, height=800)
     play_rick_roll()
-
 
 #______________________________WIN SCREEN_______________________________________
 def winner_screen():
