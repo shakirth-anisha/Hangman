@@ -90,278 +90,17 @@ def play_lose():
     pygame.mixer.music.play(loops=1)
 
 #__________________________WORD LISTS__________________________
-ice_cream_list =[
-    "VANILLA",
-    "CHOCOLATE",
-    "STRAWBERRY",
-    "MINT CHOCOLATE CHIP",
-    "COOKIES AND CREAM",
-    "ROCKY ROAD",
-    "BUTTER PECAN",
-    "COOKIE DOUGH",
-    "PISTACHIO",
-    "NEAPOLITAN",
-    "COFFEE",
-    "MANGO",
-    "BLACK CHERRY",
-    "CARAMEL SWIRL",
-    "PEANUT BUTTER CUP",
-    "TOFFEE CRUNCH",
-    "DOUBLE CHOCOLATE FUDGE",
-    "MAPLE WALNUT",
-    "RUM RAISIN",
-    "COCONUT",
-    "HAZELNUT",
-    "CHERRY GARCIA",
-    "PRALINES AND CREAM",
-    "BANANA SPLIT",
-    "LEMON SORBET",
-    "BLUEBERRY CHEESECAKE",
-    "KEY LIME PIE",
-    "RED VELVET",
-    "SALTED CARAMEL",
-    "WHITE CHOCOLATE"]
+ice_cream_list = ["VANILLA", "CHOCOLATE", "STRAWBERRY", "MINT CHOCOLATE CHIP", "COOKIES AND CREAM", "ROCKY ROAD", "BUTTER PECAN", "COOKIE DOUGH", "PISTACHIO", "NEAPOLITAN", "COFFEE", "MANGO", "BLACK CHERRY", "CARAMEL SWIRL", "PEANUT BUTTER CUP", "TOFFEE CRUNCH", "DOUBLE CHOCOLATE FUDGE", "MAPLE WALNUT", "RUM RAISIN", "COCONUT", "HAZELNUT", "CHERRY GARCIA", "PRALINES AND CREAM", "BANANA SPLIT", "LEMON SORBET", "BLUEBERRY CHEESECAKE", "KEY LIME PIE", "RED VELVET", "SALTED CARAMEL", "WHITE CHOCOLATE"]
 
-novels_list = [
-    "HOUSE OF EARTH AND BLOOD",
-    "VERITY",
-    "BEFORE I FALL",
-    "LOOKING FOR ALASKA",
-    "RED QUEEN",
-    "THE LOVE HYPOTHESIS",
-    "TWISTED LOVE",
-    "THE SANATORIUM",
-    "PERCY JACKSON",
-    "HARRY POTTER",
-    "THE BROMANCE BOOK CLUB",
-    "RED, WHITE & ROYAL BLUE",
-    "A COURT OF THORNS AND ROSES",
-    "THE PUSH",
-    "ALL THE BRIGHT PLACES",
-    "THE FLATSHARE",
-    "SHADOW AND BONE",
-    "TUESDAYS WITH MORRIE",
-    "THE CRUEL PRINCE",
-    "THE GUEST LIST",
-    "LEGENDBORN",
-    "THE GILDED WOLVES",
-    "THE DATING PLAYBOOK",
-    "THE POPPY WAR",
-    "BLACK SUN",
-    "THEY BOTH DIE AT THE END",
-    "PEOPLE WE MEET ON VACATION",
-    "BEACH READ",
-    "THE DIARY OF A WIMPY KID",
-    "THRONE OF GLASS",
-    "SHERLOCK HOLMES",
-    "THE SILENT PATIENT",
-    "THE BONE SEASON",
-    "THE INHERITANCE GAMES",
-    "CARAVAL",
-    "THE HATE U GIVE",
-    "GONE GIRL",
-    "HERCULE POIROT",
-    "MURDER ON THE ORIENT EXPRESS",
-    "MALICE",
-    "THE NIGHT SWIM",
-    "SHATTER ME",
-    "THE SEARCHER",
-    "AURORA RISING",
-    "IT HAPPENED ONE SUMMER",
-    "THE MASK FALLING",
-    "THE REVERSAL",
-    "THE ALCHEMIST",
-    "ONE OF US IS LYING",
-    "CEMETERY BOYS",
-    "FIVE FEET APART",
-    "WILL NEWMAN",
-    "THE FAULT IN OUR STARS",
-    "THE SPANISH LOVE DECEPTION",
-    "THE HATING GAME",
-    "THE GREAT GATSBY",
-    "SIX OF CROWS"]
+novels_list = ["HOUSE OF EARTH AND BLOOD", "VERITY", "BEFORE I FALL", "LOOKING FOR ALASKA", "RED QUEEN", "THE LOVE HYPOTHESIS", "TWISTED LOVE", "THE SANATORIUM", "PERCY JACKSON", "HARRY POTTER", "THE BROMANCE BOOK CLUB", "RED, WHITE AND ROYAL BLUE", "A COURT OF THORNS AND ROSES", "THE PUSH", "ALL THE BRIGHT PLACES", "THE FLATSHARE", "SHADOW AND BONE", "TUESDAYS WITH MORRIE", "THE CRUEL PRINCE", "THE GUEST LIST", "LEGENDBORN", "THE GILDED WOLVES", "THE DATING PLAYBOOK", "THE POPPY WAR", "BLACK SUN", "THEY BOTH DIE AT THE END", "PEOPLE WE MEET ON VACATION", "BEACH READ", "THE DIARY OF A WIMPY KID", "THRONE OF GLASS", "SHERLOCK HOLMES", "THE SILENT PATIENT", "THE BONE SEASON", "THE INHERITANCE GAMES", "CARAVAL", "THE HATE U GIVE", "GONE GIRL", "HERCULE POIROT", "MURDER ON THE ORIENT EXPRESS", "MALICE", "THE NIGHT SWIM", "SHATTER ME", "THE SEARCHER", "AURORA RISING", "IT HAPPENED ONE SUMMER", "THE MASK FALLING", "THE REVERSAL", "THE ALCHEMIST", "ONE OF US IS LYING", "CEMETERY BOYS", "FIVE FEET APART", "WILL NEWMAN", "THE FAULT IN OUR STARS", "THE SPANISH LOVE DECEPTION", "THE HATING GAME", "THE GREAT GATSBY", "SIX OF CROWS"]
 
-music_list = [
-    "SHAPE OF YOU",
-    "DESPACITO",
-    "TUM HI HO",
-    "SENORITA",
-    "LEAN ON",
-    "MALHARI",
-    "HAVANA",
-    "WAKA WAKA",
-    "JEENE LAGA HOON",
-    "BELIEVER",
-    "TERA BAN JAUNGA",
-    "PERFECT",
-    "INKEM INKEM INKEM KAAVALE",
-    "CHEAP THRILLS",
-    "BEKHAYALI",
-    "MY HEART WILL GO ON",
-    "FADED",
-    "COUNTING STARS",
-    "DANCE MONKEY",
-    "SAY YOU WONT LET GO",
-    "KAUN TUJHE",
-    "UPTOWN FUNK",
-    "BUTTERFLY",
-    "ATTENTION",
-    "SAY SOMETHING",
-    "CANT STOP THE FEELING",
-    "SHAPE OF YOU",
-    "SORRY",
-    "ROAR",
-    "COUNTING STARS",
-    "HAPPIER",
-    "BLINDING LIGHTS",
-    "WATERMELON SUGAR",
-    "DYNAMITE",
-    "SAVAGE LOVE",
-    "GOOD FOR U",
-    "LEAVE THE DOOR OPEN",
-    "KISS ME MORE",
-    "SAVE YOUR TEARS",
-    "MONTERO",
-    "PEACHES",
-    "LEVITATING",
-    "DEJA VU",
-    "UP",
-    "MOOD",
-    "POKER FACE",
-    "SHUT UP AND DANCE",
-    "CANT FEEL MY FACE",
-    "BAD ROMANCE"
-    "NEVER GONNA GIVE YOU UP"]
+music_list = ["SHAPE OF YOU", "DESPACITO", "TUM HI HO", "SENORITA", "LEAN ON", "MALHARI", "HAVANA", "WAKA WAKA", "JEENE LAGA HOON", "BELIEVER", "TERA BAN JAUNGA", "PERFECT", "INKEM INKEM INKEM KAAVALE", "CHEAP THRILLS", "BEKHAYALI", "MY HEART WILL GO ON", "FADED", "COUNTING STARS", "DANCE MONKEY", "SAY YOU WONT LET GO", "KAUN TUJHE", "UPTOWN FUNK", "BUTTERFLY", "ATTENTION", "SAY SOMETHING", "CANT STOP THE FEELING", "SHAPE OF YOU", "SORRY", "ROAR", "COUNTING STARS", "HAPPIER", "BLINDING LIGHTS", "WATERMELON SUGAR", "DYNAMITE", "SAVAGE LOVE", "GOOD FOR U", "LEAVE THE DOOR OPEN", "KISS ME MORE", "SAVE YOUR TEARS", "MONTERO", "PEACHES", "LEVITATING", "DEJA VU", "UP", "MOOD", "POKER FACE", "SHUT UP AND DANCE", "CANT FEEL MY FACE", "BAD ROMANCE", "NEVER GONNA GIVE YOU UP"]
 
-nostalgia_list =[
-    "LOCKDOWN",
-    "NATIONAL TESTING AGENCY",
-    "REVISION",
-    "MACERENA",
-    "MASK",
-    "CRUSH"
-    "FAILURE",
-    "SOCIAL DISTANCING",
-    "PHYSICS WALLAH",
-    "INTEGRATION",
-    "SRI CHAITANYA",
-    "PTM",
-    "CENGAGE",
-    "JEE ADVANCED",
-    "TRAUMA",
-    "HC VERMA",
-    "ONLINE CLASS",
-    "COVID",
-    "ZOOM",
-    "MS CHOUHAN",
-    "IIT JEE",
-    "INORGANIC CHEMISTRY",
-    "ORGANIC CHEMISTRY",
-    "QUARTINE",
-    "JEENEETARDS",
-    "ROTATIONAL MOTION",
-    "SPORTS DAY",
-    "UNACADEMY",
-    "TIME MANAGEMENT",
-    "EXPERIMENTAL BATCH",
-    "SYLLABUS",
-    "PEN FIGHT",
-    "SEMICONDUCTORS",
-    "JEE MAINS",
-    "ALLEN",
-    "NARAYANA",
-    "HOPELESS",
-    "AAKASH",
-    "BOOK FAIR",
-    "MESOMERIC EFFECT",
-    "DEPRESSION",
-    "KOTA FACTORY",
-    ]
+nostalgia_list = ["LOCKDOWN", "NATIONAL TESTING AGENCY", "REVISION", "MACERENA", "MASK", "CRUSH", "FAILURE", "SOCIAL DISTANCING", "PHYSICS WALLAH", "INTEGRATION", "SRI CHAITANYA", "PTM", "CENGAGE", "JEE ADVANCED", "TRAUMA", "HC VERMA", "ONLINE CLASS", "COVID", "ZOOM", "MS CHOUHAN", "IIT JEE", "INORGANIC CHEMISTRY", "ORGANIC CHEMISTRY", "QUARANTINE", "JEENEETARDS", "ROTATIONAL MOTION", "SPORTS DAY", "UNACADEMY", "TIME MANAGEMENT", "EXPERIMENTAL BATCH", "SYLLABUS", "PEN FIGHT", "SEMICONDUCTORS", "JEE MAINS", "ALLEN", "NARAYANA", "HOPELESS", "AAKASH", "BOOK FAIR", "MESOMERIC EFFECT", "DEPRESSION", "KOTA FACTORY"]
 
-movies_list = [
-    "SHERSHAAH",
-    "RAIDERS OF THE LOST ARK",
-    "ROCKSTAR",
-    "IT"
-    "STAR WARS",
-    "QUEEN",
-    "CITY LIGHTS",
-    "THE SHAPE OF WATER",
-    "KUCH KUCH HOTA HAI",
-    "JOKER",
-    "FAST AND FURIOUS",
-    "THE SOUND OF MUSIC",
-    "PINK",
-    "DILWALE DULHANIA LE JAYENGE",
-    "PADMAAVAT",
-    "DESPICABLE ME",
-    "BARBIE",
-    "KABHI KHUSHI KABHIE GHAM",
-    "MADAGASCAR",
-    "THE GODFATHER",
-    "SHOLAY",
-    "INCEPTION",
-    "DEVDAS",
-    "THE DARK KNIGHT",
-    "OPPENHEIMER",
-    "TITANIC",
-    "FORREST GUMP",
-    "CHHICHHORE",
-    "TAARE ZAMEEN PAR",
-    "PK",
-    "THE LION KING",
-    "ZINDAGI NA MILEGI DOBARA",
-    "LAGAAN",
-    "LA LA LAND",
-    "CASABLANCA",
-    "THE SILENCE OF THE LAMBS",
-    "JAB WE MET",
-    "SLUMDOG MILLIONAIRE",
-    "FIGHT CLUB",
-    "BHAAG MILKHA BHAAG",
-    "THE LORD OF THE RINGS",
-    "OM SHANTI OM",
-    "DANGAL",
-    "MOTHER INDIA",
-    "JURASSIC PARK",
-    "AVATAR",
-    "DIL CHAHTA HAI",
-    "GONE WITH THE WIND",
-    "PULP FICTION",
-    "THE AVENGERS",
-    "THE MATRIX",
-    "LIGHTS OUT",
-    "TRAIN TO BUSAN",
-    "BARFI",
-    "JAWS",
-    "GLADIATOR",
-    "INTERSTELLAR",
-    "CITIZEN KANE"]
+movies_list = ["SHERSHAAH", "RAIDERS OF THE LOST ARK", "ROCKSTAR", "IT", "STAR WARS", "QUEEN", "CITY LIGHTS", "THE SHAPE OF WATER", "KUCH KUCH HOTA HAI", "JOKER", "FAST AND FURIOUS", "THE SOUND OF MUSIC", "PINK", "DILWALE DULHANIA LE JAYENGE", "PADMAAVAT", "DESPICABLE ME", "BARBIE", "KABHI KHUSHI KABHIE GHAM", "MADAGASCAR", "THE GODFATHER", "SHOLAY", "INCEPTION", "DEVDAS", "THE DARK KNIGHT", "OPPENHEIMER", "TITANIC", "FORREST GUMP", "CHHICHHORE", "TAARE ZAMEEN PAR", "PK", "THE LION KING", "ZINDAGI NA MILEGI DOBARA", "LAGAAN", "LA LA LAND", "CASABLANCA", "THE SILENCE OF THE LAMBS", "JAB WE MET", "SLUMDOG MILLIONAIRE", "FIGHT CLUB", "BHAAG MILKHA BHAAG", "THE LORD OF THE RINGS", "OM SHANTI OM", "DANGAL", "MOTHER INDIA", "JURASSIC PARK", "AVATAR", "DIL CHAHTA HAI", "GONE WITH THE WIND", "PULP FICTION", "THE AVENGERS", "THE MATRIX", "LIGHTS OUT", "TRAIN TO BUSAN", "BARFI", "JAWS", "GLADIATOR", "INTERSTELLAR", "CITIZEN KANE"]
 
-pes_list = [
-    "BUN SAMOSA",
-    "SHAWARMA",
-    "QUADRANGLE",
-    "MRD AUDITORIUM",
-    "COW", 
-    "HOSPITAL",
-    "SKILL ISSUE",
-    "JAGS",
-    "MAAYA",
-    "IN SEMESTER",
-    "END SEMESTER",
-    "SIXTY THREE ACRES",
-    "NO INTERNET",
-    "NO WIFI",
-    "RIYAL",
-    "NAATU NAATU",
-    "RETRO DAY",
-    "RICK ROLL",
-    "FAILURE",
-    "EMOTIONAL DAMAGE",
-    "PESSIMISTIC",
-    "HOPES CRUSHED", 
-    "SUPREMACY"]
+pes_list = ["BUN SAMOSA", "SHAWARMA", "QUADRANGLE", "MRD AUDITORIUM", "COW", "HOSPITAL", "SKILL ISSUE", "JAGS", "MAAYA", "IN SEMESTER", "END SEMESTER", "SIXTY THREE ACRES", "NO INTERNET", "NO WIFI", "RIYAL", "NAATU NAATU", "RETRO DAY", "RICK ROLL", "FAILURE", "EMOTIONAL DAMAGE", "PESSIMISTIC", "HOPES CRUSHED", "SUPREMACY"]
 
 #__________________________START SCREEN__________________________
 def start_screen():  
@@ -430,7 +169,6 @@ def categories_screen():
         chosen_word = random.choice(chosen_category)
         game_screen(chosen_word)
         destruction()
-        
 
     def create_button(category, category_img, x, y):
         def on_button_click():
@@ -480,7 +218,6 @@ def multiplayer_screen():
             input_box.tag_configure("center", justify=CENTER)
             input_box.tag_add("center", "1.0", "end")
             
-        
         chosen_word = input_box.get("1.0", "end-1c")
         chosen_word = chosen_word.upper()
         chosen_word = chosen_word.strip()
@@ -661,7 +398,6 @@ def game_screen(chosen_word):
                 lives_img.config(image=lives[wrong])
                 wrong_chosen_letters.append(i)
                 
-            
         #Going to the next screen
         if wrong == 5:
             if chosen_word=="RICK ROLL" or chosen_word == "NEVER GONNA GIVE YOU UP":
@@ -678,7 +414,6 @@ def game_screen(chosen_word):
                 go_to_rickroll_screen()
             else:
                 go_to_win_screen()
-
                 
     print(chosen_word_letters_backup)
     def go_to_lose_screen():
@@ -696,7 +431,6 @@ def game_screen(chosen_word):
         hangman.after(1000, destruction)
         hangman.after(1000, rickroll_screen)
 
-       
     lives_img = Label(hangman, image=zero_img, borderwidth=0, highlightthickness=0, background=BLACK)
     lives_img.place(x=600, y=50)
     
@@ -716,7 +450,6 @@ def rickroll_screen():
 
     def destruction():
         rickroll_label.destroy()
-    
     
     hangman.after(1000, play_rick_roll)
     hangman.after(13500,destruction)
@@ -765,16 +498,14 @@ def winner_screen():
     playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again)
     playagain.place(x=50,y=575)
 
-    
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
     close_button.place(x=25, y=25)
-
+    
 #______________________________LOSE SCREEN_______________________________________
 def loser_screen():
 
     play_lose()
-
-
+    
     def destruction():
         you_lose_label.destroy()
         word_answer.destroy()
@@ -782,13 +513,11 @@ def loser_screen():
         close_button.destroy()
         playagain.destroy()
         loser_video_lbl.destroy()
-        
     
     def play_again():
         destruction()
         home_screen()
         pygame.mixer.music.stop()
-        
         
     def close():
         pygame.mixer.music.stop()
@@ -810,7 +539,6 @@ def loser_screen():
     answer.place(x=50,y=400, width=350, height=150)
     playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again) 
     playagain.place(x=50,y=575)
-    
     
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
     close_button.place(x=25, y=25)
