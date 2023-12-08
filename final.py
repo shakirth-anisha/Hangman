@@ -199,11 +199,10 @@ def categories_screen():
         home_screen()
     back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
     back_button.place(x=25, y=25)
-    #close()
     
 #__________________________MULTIPLAYER SCREEN__________________________
 def multiplayer_screen():
-    #chosen_category = []
+
     def destruction():
         multiplayer_txt.destroy()
         input_box.destroy()
@@ -331,7 +330,6 @@ def game_screen(chosen_word):
     #Checking
     print(chosen_word)
     
-    #Used in future
     for i in chosen_word:
         chosen_word_letters.append(i)
         if i != " ":
@@ -378,6 +376,11 @@ def game_screen(chosen_word):
             Letter_button = create_button(chr(i), x_pos, y_pos)
             keyboard_list.append(Letter_button)
             x_pos += x_add
+            j = chr(i).lower()
+            try:
+                hangman.bind(j, lambda event, button=Letter_button: button.invoke())
+            except:
+                pass
      
     #Editing guessed words
     def replace():
@@ -434,7 +437,6 @@ def game_screen(chosen_word):
     lives_img = Label(hangman, image=zero_img, borderwidth=0, highlightthickness=0, background=BLACK)
     lives_img.place(x=600, y=50)
     
-    #Setting up images for wrong thingy
     lives = [zero_img, one_img, two_img, three_img, four_img, five_img]
     
     back_button = ttwidgets.TTButton(hangman, image=back_img,  command=back_btn, highlightthickness=0, borderwidth=0, bg=BLACK)
