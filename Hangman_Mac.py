@@ -15,11 +15,11 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 800
 
 hangman = Tk()
-#Width first Height 2nd
 hangman.geometry("1000x800")
 hangman["background"]=BLACK
 hangman.title("Hangman")
 hangman.resizable(width=0, height=0)
+os.chdir("/Users/anisha/Documents/Pyton/Hangman")
 
 #__________________________IMAGES__________________________
 #Start Screen
@@ -73,7 +73,7 @@ back_img = PhotoImage(file=f"{os.getcwd()}/Images/Back.png")
 #__________________________SOUNDS__________________________
 pygame.mixer.init()
 win_soundtrack=f"{os.getcwd()}/Sound/golf_clap.wav"
-lose_sountrack=f"{os.getcwd()}/Sound/sad_horn.wav"
+lose_sountrack=f"{os.getcwd()}/Sound/super_mario_bros.wav"
 rickroll_soundtrack=f"{os.getcwd()}/Sound/rick_roll.wav"
 
 #__________________________VIDEOS__________________________
@@ -90,17 +90,17 @@ def play_lose():
     pygame.mixer.music.play(loops=1)
 
 #__________________________WORD LISTS__________________________
-ice_cream_list = ["VANILLA", "CHOCOLATE", "STRAWBERRY", "MINT CHOCOLATE CHIP", "COOKIES AND CREAM", "ROCKY ROAD", "BUTTER PECAN", "COOKIE DOUGH", "PISTACHIO", "NEAPOLITAN", "COFFEE", "MANGO", "BLACK CHERRY", "CARAMEL SWIRL", "PEANUT BUTTER CUP", "TOFFEE CRUNCH", "DOUBLE CHOCOLATE FUDGE", "MAPLE WALNUT", "RUM RAISIN", "COCONUT", "HAZELNUT", "CHERRY GARCIA", "PRALINES AND CREAM", "BANANA SPLIT", "LEMON SORBET", "BLUEBERRY CHEESECAKE", "KEY LIME PIE", "RED VELVET", "SALTED CARAMEL", "WHITE CHOCOLATE"]
+ice_cream_list = ["VANILLA", "BLACK CURRENT", "BLACK FORREST", "CHOCOLATE", "STRAWBERRY", "MINT CHOCOLATE CHIP", "COOKIES AND CREAM", "ROCKY ROAD", "COOKIE DOUGH", "PISTACHIO", "NEAPOLITAN", "COFFEE", "MANGO", "BLACK CHERRY", "CARAMEL SWIRL", "TOFFEE CRUNCH", "DOUBLE CHOCOLATE FUDGE", "MAPLE WALNUT", "RUM RAISIN", "COCONUT", "HAZELNUT", "BANANA SPLIT", "LEMON SORBET", "BLUEBERRY CHEESECAKE", "KEY LIME PIE", "RED VELVET", "SALTED CARAMEL", "WHITE CHOCOLATE"]
 
 novels_list = ["HOUSE OF EARTH AND BLOOD", "VERITY", "BEFORE I FALL", "LOOKING FOR ALASKA", "RED QUEEN", "THE LOVE HYPOTHESIS", "TWISTED LOVE", "THE SANATORIUM", "PERCY JACKSON", "HARRY POTTER", "THE BROMANCE BOOK CLUB", "RED, WHITE AND ROYAL BLUE", "A COURT OF THORNS AND ROSES", "THE PUSH", "ALL THE BRIGHT PLACES", "THE FLATSHARE", "SHADOW AND BONE", "TUESDAYS WITH MORRIE", "THE CRUEL PRINCE", "THE GUEST LIST", "LEGENDBORN", "THE GILDED WOLVES", "THE DATING PLAYBOOK", "THE POPPY WAR", "BLACK SUN", "THEY BOTH DIE AT THE END", "PEOPLE WE MEET ON VACATION", "BEACH READ", "THE DIARY OF A WIMPY KID", "THRONE OF GLASS", "SHERLOCK HOLMES", "THE SILENT PATIENT", "THE BONE SEASON", "THE INHERITANCE GAMES", "CARAVAL", "THE HATE U GIVE", "GONE GIRL", "HERCULE POIROT", "MURDER ON THE ORIENT EXPRESS", "MALICE", "THE NIGHT SWIM", "SHATTER ME", "THE SEARCHER", "AURORA RISING", "IT HAPPENED ONE SUMMER", "THE MASK FALLING", "THE REVERSAL", "THE ALCHEMIST", "ONE OF US IS LYING", "CEMETERY BOYS", "FIVE FEET APART", "WILL NEWMAN", "THE FAULT IN OUR STARS", "THE SPANISH LOVE DECEPTION", "THE HATING GAME", "THE GREAT GATSBY", "SIX OF CROWS"]
 
-music_list = ["SHAPE OF YOU", "DESPACITO", "TUM HI HO", "SENORITA", "LEAN ON", "MALHARI", "HAVANA", "WAKA WAKA", "JEENE LAGA HOON", "BELIEVER", "TERA BAN JAUNGA", "PERFECT", "INKEM INKEM INKEM KAAVALE", "CHEAP THRILLS", "BEKHAYALI", "MY HEART WILL GO ON", "FADED", "COUNTING STARS", "DANCE MONKEY", "SAY YOU WONT LET GO", "KAUN TUJHE", "UPTOWN FUNK", "BUTTERFLY", "ATTENTION", "SAY SOMETHING", "CANT STOP THE FEELING", "SHAPE OF YOU", "SORRY", "ROAR", "COUNTING STARS", "HAPPIER", "BLINDING LIGHTS", "WATERMELON SUGAR", "DYNAMITE", "SAVAGE LOVE", "GOOD FOR U", "LEAVE THE DOOR OPEN", "KISS ME MORE", "SAVE YOUR TEARS", "MONTERO", "PEACHES", "LEVITATING", "DEJA VU", "UP", "MOOD", "POKER FACE", "SHUT UP AND DANCE", "CANT FEEL MY FACE", "BAD ROMANCE", "NEVER GONNA GIVE YOU UP"]
+music_list = ["SHAPE OF YOU", "DESPACITO", "TUM HI HO", "SENORITA", "LEAN ON", "MALHARI", "HAVANA", "WAKA WAKA", "JEENE LAGA HOON", "BELIEVER", "TERA BAN JAUNGA", "PERFECT", "INKEM INKEM INKEM KAAVALE", "CHEAP THRILLS", "BEKHAYALI", "MY HEART WILL GO ON", "FADED", "COUNTING STARS", "DANCE MONKEY", "SAY YOU WONT LET GO", "KAUN TUJHE", "UPTOWN FUNK", "BUTTERFLY", "ATTENTION", "SAY SOMETHING", "CANT STOP THE FEELING", "SHAPE OF YOU", "SORRY", "ROAR", "COUNTING STARS", "HAPPIER", "BLINDING LIGHTS", "WATERMELON SUGAR", "DYNAMITE", "SAVAGE LOVE", "GOOD FOR U", "LEAVE THE DOOR OPEN", "KISS ME MORE", "SAVE YOUR TEARS", "MONTERO", "PEACHES", "LEVITATING", "DEJA VU", "UP", "MOOD", "POKER FACE", "SHUT UP AND DANCE", "CANT FEEL MY FACE", "BAD ROMANCE", "CRIMINAl", "NEVER GONNA GIVE YOU UP"]
 
 nostalgia_list = ["LOCKDOWN", "NATIONAL TESTING AGENCY", "REVISION", "MACERENA", "MASK", "CRUSH", "FAILURE", "SOCIAL DISTANCING", "PHYSICS WALLAH", "INTEGRATION", "SRI CHAITANYA", "PTM", "CENGAGE", "JEE ADVANCED", "TRAUMA", "HC VERMA", "ONLINE CLASS", "COVID", "ZOOM", "MS CHOUHAN", "IIT JEE", "INORGANIC CHEMISTRY", "ORGANIC CHEMISTRY", "QUARANTINE", "JEENEETARDS", "ROTATIONAL MOTION", "SPORTS DAY", "UNACADEMY", "TIME MANAGEMENT", "EXPERIMENTAL BATCH", "SYLLABUS", "PEN FIGHT", "SEMICONDUCTORS", "JEE MAINS", "ALLEN", "NARAYANA", "HOPELESS", "AAKASH", "BOOK FAIR", "MESOMERIC EFFECT", "DEPRESSION", "KOTA FACTORY"]
 
 movies_list = ["SHERSHAAH", "RAIDERS OF THE LOST ARK", "ROCKSTAR", "IT", "STAR WARS", "QUEEN", "CITY LIGHTS", "THE SHAPE OF WATER", "KUCH KUCH HOTA HAI", "JOKER", "FAST AND FURIOUS", "THE SOUND OF MUSIC", "PINK", "DILWALE DULHANIA LE JAYENGE", "PADMAAVAT", "DESPICABLE ME", "BARBIE", "KABHI KHUSHI KABHIE GHAM", "MADAGASCAR", "THE GODFATHER", "SHOLAY", "INCEPTION", "DEVDAS", "THE DARK KNIGHT", "OPPENHEIMER", "TITANIC", "FORREST GUMP", "CHHICHHORE", "TAARE ZAMEEN PAR", "PK", "THE LION KING", "ZINDAGI NA MILEGI DOBARA", "LAGAAN", "LA LA LAND", "CASABLANCA", "THE SILENCE OF THE LAMBS", "JAB WE MET", "SLUMDOG MILLIONAIRE", "FIGHT CLUB", "BHAAG MILKHA BHAAG", "THE LORD OF THE RINGS", "OM SHANTI OM", "DANGAL", "MOTHER INDIA", "JURASSIC PARK", "AVATAR", "DIL CHAHTA HAI", "GONE WITH THE WIND", "PULP FICTION", "THE AVENGERS", "THE MATRIX", "LIGHTS OUT", "TRAIN TO BUSAN", "BARFI", "JAWS", "GLADIATOR", "INTERSTELLAR", "CITIZEN KANE"]
 
-pes_list = ["BUN SAMOSA", "SHAWARMA", "QUADRANGLE", "MRD AUDITORIUM", "COW", "HOSPITAL", "SKILL ISSUE", "JAGS", "MAAYA", "IN SEMESTER", "END SEMESTER", "SIXTY THREE ACRES", "NO INTERNET", "NO WIFI", "RIYAL", "NAATU NAATU", "RETRO DAY", "RICK ROLL", "FAILURE", "EMOTIONAL DAMAGE", "PESSIMISTIC", "HOPES CRUSHED", "SUPREMACY"]
+pes_list = ["BUN SAMOSA", "SHAWARMA", "QUADRANGLE", "MRD AUDITORIUM", "COW", "HOSPITAL", "SKILL ISSUE", "JAGS", "MAAYA", "IN SEMESTER", "END SEMESTER", "SIXTY THREE ACRES", "NO INTERNET", "NO WIFI", "RIYAL", "NAATU NAATU", "RETRO DAY", "RICK ROLL", "FAILURE", "EMOTIONAL DAMAGE", "PESSIMISTIC", "HOPES CRUSHED", "SUPREMEC", "PAIN EDUCATION SOCIETY", "ATTENDANCE", "MOYE MOYE", "CRICKET FIELD"]
 
 #__________________________START SCREEN__________________________
 def start_screen():  
@@ -111,6 +111,7 @@ def start_screen():
     #Buttons
     start_button = ttwidgets.TTButton(hangman, image=start_img, borderwidth=0, highlightthickness=0, command=on_button_click, bg=BLACK)
     start_button.place(x=300, y=325)
+    hangman.bind('<Return>', lambda event, button=start_button: button.invoke())
 
 #__________________________HOME SCREEN__________________________
 def home_screen():
@@ -142,6 +143,7 @@ def home_screen():
     home_txt.place(x=450, y=230)
     single_player_button = ttwidgets.TTButton(hangman, image=single_player_img, background=BLACK, command=single_player_mode)
     single_player_button.place(x=50,y=230)
+    hangman.bind('<Return>', lambda event, button=single_player_button: button.invoke())
     multiplayer_home_button = ttwidgets.TTButton(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
     multiplayer_home_button.place(x=50, y=430)
     instructions_button = ttwidgets.TTButton(hangman, image=instructions_img, background=BLACK, command=instructions_mode)
@@ -170,15 +172,16 @@ def categories_screen():
         game_screen(chosen_word)
         destruction()
 
-    def create_button(category, category_img, x, y):
+    def create_button(category, category_img, x, y, number):
         def on_button_click():
             handle_button_click(category)
-        category_button = Button(hangman, image=category_img, borderwidth=0, highlightthickness=0, highlightcolor=BLACK, command=on_button_click)
+        category_button = ttwidgets.TTButton(hangman, image=category_img, borderwidth=0, highlightthickness=0, highlightcolor=BLACK, command=on_button_click)
+        hangman.bind(number, lambda event, button=category_button: button.invoke())
         category_button.place(x=x, y=y)
         category_buttons.append(category_button)
 
     # Create a label
-    output_label = Label(hangman, image=categories_header_img, font=("Helvetica", 64), background=BLACK)
+    output_label = Label(hangman, image=categories_header_img, background=BLACK)
     output_label.place(x=240, y=90)
 
     # Create buttons for different categories
@@ -192,7 +195,7 @@ def categories_screen():
         category = categories[i]
         category_img = category_imgs[i]
         x, y = button_coordinates[i]
-        category_button = create_button(category, category_img, x, y)
+        category_button = create_button(category, category_img, x, y, i+1)
         
     def back_btn():
         destruction()
@@ -235,6 +238,13 @@ def multiplayer_screen():
                 input_box.tag_add("center", "1.0", "end")
                 input_box.bind('<Button-1>', click)
 
+        elif any(len(i)>13 for i in chosen_word.split(" ")):
+                input_box.delete("1.0", END)
+                input_box.insert("1.0", " ")
+                input_box.tag_configure("center", justify=CENTER)
+                input_box.insert("1.0", f"Max 12 letters\nper word please")
+                input_box.tag_add("center", "1.0", "end")
+                input_box.bind('<Button-1>', click)
         else:
             destruction()
             game_screen(chosen_word)
@@ -246,7 +256,7 @@ def multiplayer_screen():
     input_box.insert("1.0", " ")
     input_box.tag_add("center", "1.0", "end")
     input_box.place(x=135, y=255)
-    submit_button = Button(hangman, image=submit_img, background=BLACK, highlightthickness=0, border=0, command=submit_txt)
+    submit_button = ttwidgets.TTButton(hangman, image=submit_img, background=BLACK, highlightthickness=0, borderwidth=0, command=submit_txt)
     submit_button.place(x=325, y=600)
     
     def back_btn():
@@ -277,9 +287,9 @@ def instructions_screen():
     instructions_txt.place(x=255, y=40)
     instructions_rules_txt = Label(hangman, image=instructions_rules_img, background=BLACK)
     instructions_rules_txt.place(x=50, y=230)
-    single_player_button = Button(hangman, image=single_player_img, background=BLACK, command=single_player_mode)
+    single_player_button = ttwidgets.TTButton(hangman, image=single_player_img, background=BLACK, command=single_player_mode)
     single_player_button.place(x=600,y=340)
-    multiplayer_button = Button(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
+    multiplayer_button = ttwidgets.TTButton(hangman, image=multiplayer_img, background=BLACK, command=multiplayer_mode)
     multiplayer_button.place(x=600, y=520)
     
     def back_btn():
@@ -365,7 +375,7 @@ def game_screen(chosen_word):
             print(chosen_letter_list)
             replace()
 
-        Letter_button = ttwidgets.TTButton(hangman, text=letter, font=("Helvetica", 80), bg=BLACK, fg=GREEN, command=letter_click)
+        Letter_button = ttwidgets.TTButton(hangman, text=letter, font=("Times", 80), bg=BLACK, fg=GREEN, command=letter_click)
         Letter_button.place(x=x, y=y, height=100, width=width_two)
         return Letter_button
 
@@ -395,7 +405,7 @@ def game_screen(chosen_word):
                 else:
                     for j in range(chosen_word_letters.count(i)):
                         replaced_dashes[chosen_word_letters.index(i)].config(text=i)
-                        chosen_word_letters[chosen_word_letters.index(i)] = "0"
+                        chosen_word_letters[chosen_word_letters.index(i)] = "REPLACED"
             elif i not in chosen_word_letters_backup:
                 wrong +=1
                 lives_img.config(image=lives[wrong])
@@ -484,7 +494,7 @@ def winner_screen():
         hangman.destroy()
     
     chosen_word_2 = chosen_word
-    index_of_space = chosen_word.find(" ", 10)
+    index_of_space = chosen_word.find(" ", 7)
     chosen_word_edit = chosen_word_2[:index_of_space + 1] + "\n" + chosen_word_2[index_of_space + 1:]
     
     you_win_label=Label(hangman,image=you_win_header, highlightthickness=0, borderwidth=0)
@@ -493,12 +503,13 @@ def winner_screen():
     winner_video_lbl.place(x=450, y=240, width=500, height=500)
     winner_video=tkvideo(win_video, winner_video_lbl, loop=69, size=(500,500))
     winner_video.play()
-    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Times 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
     word_answer.place(x=50,y=320, width=350, height=100)
-    answer=Label(hangman,text=chosen_word_edit,bg=BLACK,fg=GREEN,font=("Helvetica 35 underline"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    answer=Label(hangman,text=chosen_word_edit,bg=BLACK,fg=GREEN,font=("Helvatica 45 underline"),highlightthickness=0,borderwidth=0, justify=CENTER)
     answer.place(x=50,y=400, width=350, height=150)
-    playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again)
+    playagain=ttwidgets.TTButton(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again)
     playagain.place(x=50,y=575)
+    hangman.bind('<Return>', lambda event, button=playagain: button.invoke())
 
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
     close_button.place(x=25, y=25)
@@ -526,7 +537,7 @@ def loser_screen():
         hangman.destroy()
 
     chosen_word_2 = chosen_word
-    index_of_space = chosen_word.find(" ", 10)
+    index_of_space = chosen_word.find(" ", 7)
     chosen_word_edit = chosen_word_2[:index_of_space + 1] + "\n" + chosen_word_2[index_of_space + 1:]
         
     you_lose_label=Label(hangman,image=you_lost_header, highlightthickness=0, borderwidth=0)
@@ -535,12 +546,13 @@ def loser_screen():
     loser_video_lbl.place(x=450, y=240, width=500, height=500)
     loser_video=tkvideo(lose_video, loser_video_lbl, loop=69, size=(500,500))
     loser_video.play()
-    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Helvetica 35"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    word_answer=Label(hangman,text="The Word is:",bg=BLACK,fg=PLATINUM,font=("Times 55"),highlightthickness=0,borderwidth=0, justify=CENTER)
     word_answer.place(x=50,y=320, width=350, height=100)
-    answer=Label(hangman,text=chosen_word_edit,bg=BLACK,fg=GREEN,font=("Helvetica 35 underline"),highlightthickness=0,borderwidth=0, justify=CENTER)
+    answer=Label(hangman,text=chosen_word_edit,bg=BLACK,fg=GREEN,font=("Helvatica 45 underline"),highlightthickness=0,borderwidth=0, justify=CENTER)
     answer.place(x=50,y=400, width=350, height=150)
-    playagain=Button(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again) 
+    playagain=ttwidgets.TTButton(hangman,image= play_again_img, highlightthickness=0, borderwidth=0, command=play_again) 
     playagain.place(x=50,y=575)
+    hangman.bind('<Return>', lambda event, button=playagain: button.invoke())
     
     close_button = ttwidgets.TTButton(hangman, image=close_img, highlightbackground=BLACK, highlightthickness=0, borderwidth=0, background=BLACK, foreground=BLACK, command=close)
     close_button.place(x=25, y=25)
