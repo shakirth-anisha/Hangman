@@ -238,11 +238,11 @@ def multiplayer_screen():
                 input_box.tag_add("center", "1.0", "end")
                 input_box.bind('<Button-1>', click)
 
-        elif any(len(i)>13 for i in chosen_word.split(" ")):
+        elif any(len(i)>13 for i in chosen_word.split(" ")) or chosen_word.count(" ")>6:
                 input_box.delete("1.0", END)
                 input_box.insert("1.0", " ")
                 input_box.tag_configure("center", justify=CENTER)
-                input_box.insert("1.0", f"Max 12 letters\nper word please")
+                input_box.insert("1.0", f"Max 12 letters\nand 6 words please")
                 input_box.tag_add("center", "1.0", "end")
                 input_box.bind('<Button-1>', click)
         else:
