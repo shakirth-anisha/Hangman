@@ -27,7 +27,7 @@ start_img = PhotoImage(file=f"{os.getcwd()}/Images/Start.png")
 
 #Home Screen
 hangman_img = PhotoImage(file=f"{os.getcwd()}/Images/Hangman.png")
-home_img = PhotoImage(file=f"{os.getcwd()}/Images/Hangman_Screen.png")
+home_img = PhotoImage(file=f"{os.getcwd()}/Images/Home_Screen.png")
 single_player_img = PhotoImage(file=f"{os.getcwd()}/Images/Single_Player.png")
 multiplayer_img = PhotoImage(file=f"{os.getcwd()}/Images/Multiplayer.png")
 single_player_img = PhotoImage(file=f"{os.getcwd()}/Images/Single_Player.png")
@@ -62,8 +62,6 @@ five_img = PhotoImage(file=f"{os.getcwd()}/Images/Five_Life.png")
 #Win/Lose Screen
 you_win_header = PhotoImage(file=f"{os.getcwd()}/Images/You_Won.png")
 you_lost_header = PhotoImage(file=f"{os.getcwd()}/Images/You_Lost.png")
-you_lost_img = PhotoImage(file=f"{os.getcwd()}/Images/you_lose.png")
-you_win_img = PhotoImage(file=f"{os.getcwd()}/Images/you_win.png")
 play_again_img = PhotoImage(file=f"{os.getcwd()}/Images/Play_Again.png")
 
 #Extra
