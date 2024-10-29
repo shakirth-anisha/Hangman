@@ -19,6 +19,7 @@ hangman.geometry("1000x800")
 hangman["background"]=BLACK
 hangman.title("Hangman")
 hangman.resizable(width=0, height=0)
+os.chdir("/Users/anisha/Documents/Pyton/Hangman")
 
 #__________________________IMAGES__________________________
 #Start Screen
